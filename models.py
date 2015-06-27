@@ -1,11 +1,13 @@
 __author__ = 'willowcheng'
 
+from flask.ext.login import UserMixin
 from peewee import *
 import datetime
 
 DATABASE = SqliteDatabase('social.db')
 
-class User(Model):
+
+class User(UserMixin, Model):
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField(max_length=100)
