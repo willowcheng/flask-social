@@ -17,7 +17,7 @@ class User(UserMixin, Model):
 
     class Meta:
         database = DATABASE
-        order_by = ('-joined_at')
+        order_by = ('-joined_at',)
 
     @classmethod
     def create_user(cls, username, email, password, admin=False):
@@ -29,7 +29,7 @@ class User(UserMixin, Model):
                 is_admin=admin
             )
         except IntegrityError:
-            raise  ValueError("User already exists")
+            raise ValueError("User already exists")
 
 def initialize():
     DATABASE.connect()
